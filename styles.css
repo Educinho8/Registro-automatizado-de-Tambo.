@@ -1,0 +1,799 @@
+/* ==========================================================================
+   1. VARIABLES DE DISEÑO 
+   ========================================================================== */
+:root {
+  --tambo-purple: #662d91;
+  --tambo-purple-dark: #4d1c6f;
+  --tambo-yellow: #ffcc00;
+  --tambo-yellow-hover: #e6b800;
+  --bg-light: #f3f4f6;
+  --white: #ffffff;
+  --text-dark: #1f2937;
+  --text-muted: #6b7280;
+  --border-color: #e5e7eb;
+}
+
+/* ==========================================================================
+   2. REGLAS GENERALES Y RESETEO SENSATO
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  min-height: 100vh;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* ==========================================================================
+   3. PANTALLA DE LOGUEO - ESTILO TAMBO FIGMA
+   ========================================================================== */
+
+   .login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+    background: #101010;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Forma morada superior */
+  .login-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -170px;
+    left: 38%;
+    width: 720px;
+    height: 320px;
+    background: #c926bd;
+    border-radius: 0 0 50% 50%;
+    transform: rotate(8deg);
+    z-index: 0;
+  }
+  
+  /* Forma morada derecha */
+  .login-wrapper::after {
+    content: "";
+    position: absolute;
+    right: -170px;
+    top: 80px;
+    width: 520px;
+    height: 600px;
+    background: #c926bd;
+    border-radius: 55% 0 0 55%;
+    z-index: 0;
+  }
+  
+  /* Arco inferior izquierdo */
+.login-card::before {
+  content: "";
+  position: fixed;
+  left: -260px;
+  bottom: -260px;
+  width: 520px;
+  height: 520px;
+  border: 60px solid #c926bd;
+  border-radius: 50%;
+  box-shadow: 0 0 0 45px #efff4a inset;
+  z-index: -1;
+  pointer-events: none;
+}
+  
+  .login-card {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    width: 100%;
+    max-width: 430px;
+    position: relative;
+    z-index: 2;
+    overflow: visible;
+  }
+  
+  .login-header {
+    padding: 0 2rem 1rem 2rem;
+    text-align: center;
+  }
+  
+  .tambo-logo {
+    font-size: 5.5rem;
+    font-weight: 900;
+    color: #b71cab;
+    letter-spacing: -5px;
+    line-height: 0.9;
+    text-transform: lowercase;
+  }
+  
+  .tambo-logo span {
+    color: #b71cab;
+    font-size: 3rem;
+    vertical-align: top;
+    margin-left: 4px;
+  }
+  
+  .subtitle {
+    color: #c926bd;
+    font-size: 1.15rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-top: 0.8rem;
+  }
+  
+  .login-form {
+    padding: 0 2rem 1rem 2rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-group label {
+    display: none;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background: transparent;
+    border: 1.5px solid #ffffff;
+    border-radius: 0.2rem;
+    color: #ffffff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: 0.2s ease-in-out;
+  }
+  
+  .form-group input::placeholder {
+    color: #c926bd;
+    opacity: 1;
+    text-transform: uppercase;
+  }
+  
+  .form-group input:focus {
+    border-color: #c926bd;
+    box-shadow: 0 0 8px rgba(201, 38, 189, 0.6);
+  }
+  
+  .feedback-msg {
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    height: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: #ffffff;
+  }
+  
+  .btn-primary {
+    width: 100%;
+    padding: 0.9rem;
+    background: #ffffff;
+    color: #c926bd;
+    border: none;
+    border-radius: 0.2rem;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .btn-primary:hover {
+    background: #f1f1f1;
+    transform: scale(1.02);
+  }
+  
+  .demo-credentials {
+    background: transparent;
+    border: none;
+    padding: 0.5rem 2rem;
+    font-size: 0.85rem;
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  .demo-title {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+  
+  .highlight {
+    background-color: transparent;
+    color: #c926bd;
+    padding: 0.125rem 0.25rem;
+    font-family: monospace;
+    border-radius: 0.25rem;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .tambo-logo {
+      font-size: 4.2rem;
+    }
+  
+    .subtitle {
+      font-size: 0.95rem;
+    }
+  
+    .login-wrapper::before {
+      left: 25%;
+      width: 520px;
+    }
+  
+    .login-wrapper::after {
+      right: -260px;
+    }
+  }
+
+/* ==========================================================================
+   4. BARRA DE NAVEGACIÓN (HEADER/NAVBAR)
+   ========================================================================== */
+.navbar {
+  background-color: var(--tambo-purple);
+  color: var(--white);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tambo-logo-sm {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: -1px;
+}
+
+.tambo-logo-sm span {
+  color: var(--tambo-yellow);
+}
+
+.nav-badge {
+  background-color: var(--tambo-purple-dark);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-info {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.user-info i {
+  color: var(--tambo-yellow);
+}
+
+.btn-danger {
+  background-color: #ef4444;
+  color: var(--white);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-danger:hover {
+  background-color: #dc2626;
+}
+
+/* ==========================================================================
+   5. CONTENEDOR PRINCIPAL Y TABLERO (DASHBOARD)
+   ========================================================================== */
+.main-content {
+  max-width: 1140px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+.dashboard-header {
+  background-color: var(--white);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .dashboard-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.header-text h1 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #111827;
+}
+
+.header-text h1 i {
+  color: var(--tambo-purple);
+}
+
+.header-text p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* Tarjetas de estadísticas superiores */
+.stats-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.stat-card {
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  text-align: center;
+  min-width: 120px;
+  border: 1px solid transparent;
+}
+
+.stat-critical {
+  background-color: #fef2f2;
+  border-color: #fca5a5;
+}
+
+.stat-total {
+  background-color: #f0fdf4;
+  border-color: #86efac;
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.stat-critical .stat-number { color: #dc2626; }
+.stat-total .stat-number { color: #16a34a; }
+
+.stat-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   6. TABLA DE INVENTARIO E IMÁGENES
+   ========================================================================== */
+.table-container {
+  background-color: var(--white);
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
+  overflow-x: auto;
+}
+
+.inventory-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.inventory-table th {
+  background-color: #f9fafb;
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.inventory-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 0.875rem;
+}
+
+.inventory-table tbody tr:hover {
+  background-color: #fafafa;
+}
+
+.product-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Contenedor cuadrado para las imágenes de las gaseosas */
+.product-icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f4f6;
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+  flex-shrink: 0;
+}
+
+/* Regla para evitar la deformación y estiramiento de las botellas (.png) */
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.product-name {
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.stock-cell {
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: #374151;
+}
+
+/* ==========================================================================
+   7. ETIQUETAS DE ESTADO (BADGES) Y BOTONES DE ACCIÓN
+   ========================================================================== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+}
+
+.badge-success  { background-color: #dcfce7; color: #166534; }
+.badge-warning  { background-color: #fef9c3; color: #854d0e; }
+.badge-danger   { background-color: #fee2e2; color: #991b1b; }
+.badge-critical { background-color: #ffedd5; color: #c2410c; }
+
+.actions-group {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-action-add {
+  background-color: var(--tambo-purple);
+  color: var(--white);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.btn-action-add:hover {
+  background-color: var(--tambo-purple-dark);
+}
+
+.btn-action-remove {
+  background-color: #4b5563;
+  color: var(--white);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.btn-action-remove:hover {
+  background-color: #374151;
+}
+
+.btn-action-remove:disabled {
+  background-color: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.btn-action-remove:disabled {
+  background-color: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.btn-action-remove:disabled i {
+  color: #9ca3af;
+}
+
+.btn-action-delete {
+  background-color: #b91c1c;
+  color: var(--white);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.btn-action-delete:hover {
+  background-color: #991b1b;
+}
+
+.fallback-product-icon {
+  display: none;
+  font-size: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================================================
+   8. PANEL DE ADMINISTRADOR
+   ========================================================================== */
+.admin-panel {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 980px) {
+  .admin-panel {
+    grid-template-columns: 0.95fr 1.05fr;
+  }
+}
+
+.admin-section {
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  padding: 1.25rem;
+}
+
+.section-title {
+  margin-bottom: 1rem;
+}
+
+.section-title h2 {
+  color: #111827;
+  font-size: 1.1rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-title h2 i {
+  color: var(--tambo-purple);
+}
+
+.section-title p {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  margin-top: 0.25rem;
+}
+
+.add-product-form {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.form-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.form-field label {
+  color: var(--text-dark);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.form-field input {
+  width: 100%;
+  border: 2px solid var(--border-color);
+  border-radius: 0.5rem;
+  color: var(--text-dark);
+  font-size: 0.9rem;
+  outline: none;
+  padding: 0.7rem 0.8rem;
+}
+
+.form-field input:focus {
+  border-color: var(--tambo-purple);
+  box-shadow: 0 0 0 3px rgba(102, 45, 145, 0.14);
+}
+
+.btn-admin {
+  align-items: center;
+  background-color: var(--tambo-yellow);
+  border: none;
+  border-radius: 0.5rem;
+  color: #3b2351;
+  cursor: pointer;
+  display: flex;
+  font-size: 0.85rem;
+  font-weight: 900;
+  gap: 0.45rem;
+  justify-content: center;
+  margin-top: 0.25rem;
+  padding: 0.75rem 1rem;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-admin:hover {
+  background-color: var(--tambo-yellow-hover);
+  transform: translateY(-1px);
+}
+
+.btn-report {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.movement-list {
+  display: grid;
+  gap: 0.75rem;
+  max-height: 360px;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.movement-item {
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--tambo-purple);
+  border-radius: 0.75rem;
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.85rem;
+}
+
+.movement-item strong {
+  color: var(--text-dark);
+  display: block;
+  font-size: 0.9rem;
+}
+
+.movement-item span {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.movement-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.movement-meta span {
+  background-color: #f3f4f6;
+  border-radius: 999px;
+  color: #4b5563;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.22rem 0.55rem;
+}
+
+.empty-state {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  padding: 0.75rem 0;
+}
+
+@media (max-width: 760px) {
+  .navbar,
+  .nav-user,
+  .stats-container,
+  .actions-group {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .navbar {
+    gap: 1rem;
+  }
+
+  .btn-danger,
+  .btn-action-add,
+  .btn-action-remove {
+    justify-content: center;
+  }
+
+  .qty-input {
+    width: 100%;
+  }
+}
+.qty-input {
+  width: 65px;
+  padding: 0.55rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-weight: 700;
+  color: #111827;
+  outline: none;
+}
+
+.qty-input:focus {
+  border-color: #6d2fa0;
+  box-shadow: 0 0 0 3px rgba(109, 47, 160, 0.15);
+}
+
+.actions-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.btn-action-remove:disabled {
+  background-color: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.btn-action-remove:disabled i {
+  color: #9ca3af;
+}

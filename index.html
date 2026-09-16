@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambo+ Gestión de Inventario</title>
+    <link rel="icon" href="img/favicon.png" type="image/x-icon">
+    <!-- Iconos profesionales de FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Vinculación del diseño CSS externo -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- INTERFAZ 1: LOGUEO / CONTROL DE ACCESO -->
+<div id="loginPage" class="login-wrapper">
+    <div class="login-card">
+        <div class="login-header">
+            <div class="tambo-logo">
+                tambo<span>+</span>
+            </div>
+            <p class="subtitle">Control de Inventario Almacén</p>
+        </div>
+
+        <form id="loginForm" class="login-form">
+            <div class="form-group">
+                <label for="username">
+                    <i class="fa-solid fa-user-gear"></i> Usuario
+                </label>
+                <input 
+                    type="email" 
+                    id="username" 
+                    placeholder="empleado@tambo.pe" 
+                    value="empleado@tambo.pe" 
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">
+                    <i class="fa-solid fa-lock"></i> Contraseña
+                </label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    placeholder="••••••••" 
+                    required
+                >
+            </div>
+
+            <div id="loginFeedback" class="feedback-msg"></div>
+
+            <button type="submit" class="btn-primary">
+                <i class="fa-solid fa-right-to-bracket"></i> Ingresar al Almacén
+            </button>
+        </form>
+    </div>
+</div>
+
+    <!-- INTERFAZ 2: GESTIÓN DE INVENTARIO -->
+    <div id="inventoryPage" class="inventory-wrapper hidden">
+        
+        <!-- Barra de Navegación Superior -->
+        <header class="navbar">
+            <div class="nav-brand">
+                <div class="tambo-logo-sm">
+                    tambo<span>+</span>
+                </div>
+                <span class="nav-badge">Panel de Stock </span>
+            </div>
+            
+            <div class="nav-user">
+                <span class="user-info">
+                    <i class="fa-solid fa-user-check"></i> <span id="currentUserLabel">Usuario</span>
+                </span>
+                <button id="logoutBtn" onclick="logout()" class="btn-danger">
+                    <i class="fa-solid fa-power-off"></i> Salir
+                </button>
+            </div>
+        </header>
+
+        <!-- Contenido Central -->
+        <main class="main-content">
+            <div class="dashboard-header">
+                <div class="header-text">
+                    <h1><i class="fa-solid fa-boxes-stacked"></i> Control de Stock: Gaseosas</h1>
+                    <p>Monitorea, añade o retira unidades del almacén en tiempo real.</p>
+                </div>
+                <div class="stats-container">
+                    <div class="stat-card stat-critical">
+                        <span id="lowStockCount" class="stat-number">0</span>
+                        <span class="stat-label">Sin Stock / Crítico</span>
+                    </div>
+                    <div class="stat-card stat-total">
+                        <span id="totalProductsCount" class="stat-number">0</span>
+                        <span class="stat-label">Ítems Totales</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="inventory-table">
+                    <thead>
+                        <tr>
+                            <th>Bebida</th>
+                            <th class="text-center">Stock Actual</th>
+                            <th>Estado / Alerta</th>
+                            <th class="text-center">Acciones de Almacén</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventoryTableBody">
+                        <!-- Se genera dinámicamente desde script.js -->
+                    </tbody>
+                </table>
+            </div>
+
+            <section id="adminPanel" class="admin-panel hidden">
+                <div class="admin-section">
+                    <div class="section-title">
+                        <h2><i class="fa-solid fa-circle-plus"></i> Agregar gaseosa</h2>
+                        <p>Solo el administrador puede registrar nuevos productos.</p>
+                    </div>
+
+                    <form id="addProductForm" class="add-product-form">
+                        <div class="form-field">
+                            <label for="productName">Nombre del producto</label>
+                            <input type="text" id="productName" placeholder="Ej. Pepsi 500ml" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="productStock">Stock inicial</label>
+                            <input type="number" id="productStock" min="0" value="0" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="productImage">Ruta de imagen</label>
+                            <input type="text" id="productImage" placeholder="img/nueva_gaseosa.png">
+                        </div>
+                        <button type="submit" class="btn-admin">
+                            <i class="fa-solid fa-floppy-disk"></i> Guardar producto
+                        </button>
+                    </form>
+                </div>
+
+                <div class="admin-section">
+                    <div class="section-title">
+                        <h2><i class="fa-solid fa-clipboard-list"></i> Movimientos recientes</h2>
+                        <p>Entradas, salidas y creaciones registradas por usuario.</p>
+                    </div>
+                    <button type="button" id="downloadReportBtn" class="btn-admin btn-report">
+                        <i class="fa-solid fa-file-pdf"></i> Descargar reporte PDF
+                    </button>
+                    <div class="movement-list" id="movementList"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Vinculación de la lógica JS externa -->
+    <script src="script.js"></script>
+</body>
+</html>
