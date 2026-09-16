@@ -1,4 +1,5 @@
 // Cambio desde rama develop
+//Cambio desde rama feature
 
 // --- INVENTARIO CONECTADO A BASE DE DATOS ---
 const API_URL = "http://localhost:3000";
