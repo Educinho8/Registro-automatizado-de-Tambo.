@@ -1,3 +1,5 @@
+// Cambio desde rama develop
+
 // --- INVENTARIO CONECTADO A BASE DE DATOS ---
 const API_URL = "http://localhost:3000";
 
